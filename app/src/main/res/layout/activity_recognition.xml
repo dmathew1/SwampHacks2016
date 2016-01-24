@@ -91,5 +91,23 @@
         android:layout_below="@+id/linearLayout"
         android:layout_toRightOf="@+id/linearLayout2"
         android:layout_toEndOf="@+id/linearLayout2" />
+    <ImageView
+        android:id="@+id/camera_down"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:src="@mipmap/down"
+        android:background="@mipmap/down"
+        android:layout_below="@+id/text_view"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Click me, to start and take pictures!"
+        android:id="@+id/camera_text"
+        android:layout_alignBottom="@+id/text_view"
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

@@ -105,6 +105,8 @@ public class RecognitionActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				findViewById(R.id.camera_button).setVisibility(View.INVISIBLE);
+				findViewById(R.id.camera_text).setVisibility(View.INVISIBLE);
+				findViewById(R.id.camera_down).setVisibility(View.INVISIBLE);
 				Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 				startActivityForResult(cameraIntent, CAM_REQUEST);
 			}
