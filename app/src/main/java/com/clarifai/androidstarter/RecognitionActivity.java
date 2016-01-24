@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.provider.MediaStore;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -269,6 +270,10 @@ public class RecognitionActivity extends Activity {
 		confirmButton.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
+				String toast = foodResults.get(foodResults.size()-1) + " has been added to the ingredient list.";
+				Toast t = Toast.makeText(getApplicationContext(), toast, Toast.LENGTH_LONG);
+				t.setGravity(Gravity.CENTER,0,0);
+				t.show();
 				goToStartScreen();
 			}
 		});
