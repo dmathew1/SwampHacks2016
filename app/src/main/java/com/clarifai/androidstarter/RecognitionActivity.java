@@ -50,7 +50,7 @@ public class RecognitionActivity extends Activity {
   private final ClarifaiClient client = new ClarifaiClient(APP_ID, APP_SECRET);
   private Button cameraButton;
   private ImageView imageView;
-  private TextView textView;
+	private TextView textView;
   private static final int CAM_REQUEST = 1313;
 
   @Override protected void onCreate(Bundle savedInstanceState) {
@@ -152,13 +152,11 @@ public class RecognitionActivity extends Activity {
         for (Tag tag : result.getTags()) {
           for(String food : foodBank){
             if(tag.getName().toString().equals(food)){
-              System.out.println(tag.getName());
-              System.out.println(food);
-              b.append(b.length() > 0 ? ", " : "").append(tag.getName());
+              foodResults.add(tag.getName());
             }
           }
         }
-        textView.setText("Tags:\n" + b);
+        textView.setText("Tags:\n" + foodResults);
       } else {
         Log.e(TAG, "Clarifai: " + result.getStatusMessage());
         textView.setText("Sorry, there was an error recognizing your image.");
