@@ -40,7 +40,7 @@ public class RecognitionActivity extends Activity {
   private static final String APP_SECRET = "Y1EYgZh9gQe2WFZtzJJ8EJLgtKutg5jsBvEU5KLx";
 
   private static final ArrayList<String> foodBank = new ArrayList<String>(
-          Arrays.asList("egg", "beef", "broccoli", "apple", "banana", "pear", "cheese"));
+          Arrays.asList("egg", "beef", "broccoli", "apple", "banana", "pear", "cheese","tomato"));
 
   //Results
   private ArrayList<String> foodResults = new ArrayList<String>();
