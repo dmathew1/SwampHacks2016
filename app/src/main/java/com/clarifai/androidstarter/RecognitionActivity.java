@@ -81,7 +81,6 @@ public class RecognitionActivity extends Activity {
 					protected RecognitionResult doInBackground(Bitmap... bitmaps) {
 						return recognizeBitmap(bitmaps[0]);
 					}
-
 					@Override
 					protected void onPostExecute(RecognitionResult result) {
 						updateUIForResult(result);
@@ -98,10 +97,10 @@ public class RecognitionActivity extends Activity {
 		imageView = (ImageView) findViewById(R.id.image_view);
 		textView = (TextView) findViewById(R.id.text_view);
 		cameraButton = (Button) findViewById(R.id.camera_button);
-
 		cameraButton.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
+				findViewById(R.id.camera_button).setVisibility(View.INVISIBLE);
 				Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 				startActivityForResult(cameraIntent, CAM_REQUEST);
 			}
@@ -120,6 +119,15 @@ public class RecognitionActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				getRecipeList();
+
+			}
+		});
+
+		Button getIngredients = (Button) findViewById(R.id.back);
+		getIngredients.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				goToStartScreen();
 
 			}
 		});
@@ -211,6 +219,7 @@ public class RecognitionActivity extends Activity {
 				//Creates the Button view items and sets them as visible
 				findViewById(R.id.confirm_button).setVisibility(View.VISIBLE);
 				findViewById(R.id.cancel_button).setVisibility(View.VISIBLE);
+                findViewById(R.id.get_ingredients_list).setVisibility(View.VISIBLE);
 			} else {
 				Toast.makeText(getApplicationContext(), "Could not identify the image", Toast.LENGTH_LONG).show();
 				// Execute some code after 2 seconds have passed
@@ -274,8 +283,19 @@ public class RecognitionActivity extends Activity {
 
 	public void displayRecipe(ArrayList<String> arr) {
 		setContentView(R.layout.recipe_display);
+
+		Button getIngredients = (Button) findViewById(R.id.back);
+		getIngredients.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				goToListRecipe();
+
+			}
+		});
+
 		ArrayAdapter<TextView> itemsAdapter = new ArrayAdapter(this, R.layout.list_text_view, arr);
 		ListView listView = (ListView) findViewById(R.id.listView);
 		listView.setAdapter(itemsAdapter);
+
 	}
 }
