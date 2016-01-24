@@ -1,39 +1,72 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
               xmlns:tools="http://schemas.android.com/tools"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:orientation="vertical"
               android:gravity="center"
               tools:context=".RecognitionActivity">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-  <ImageView
-      android:id="@+id/image_view"
-      android:layout_width="match_parent"
-      android:layout_height="100dp"
-      android:layout_weight="1"
-      android:scaleType="centerCrop"
-      android:contentDescription="@string/user_image"/>
+        <ImageView
+            android:id="@+id/image_view"
+            android:layout_height="310dp"
+            android:layout_width="386dp"
+            android:scaleType="centerCrop"
+            android:contentDescription="@string/user_image"/>
+    </LinearLayout>
 
-  <TextView
-      android:id="@+id/text_view"
-      android:textColor="#fff"
-      android:textSize="16sp"
-      android:gravity="center"
-      android:padding="16dp"
-      android:layout_width="match_parent"
-      android:layout_height="100dp"
-      android:layout_weight="0.4"
-      />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-  <Button
-      android:id="@+id/select_button"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:src="@mipmap/camera_button"
-      android:background="@mipmap/camera_button"
-      android:layout_alignParentBottom="true"
-      android:layout_centerHorizontal="true"
-      />
+        <TextView
+            android:id="@+id/text_view"
+            android:textColor="#fff"
+            android:textSize="16sp"
+            android:gravity="center"
+            android:padding="16dp"
+            android:layout_height="100dp"
+            android:layout_width="100dp"
+            android:layout_weight="0.4"
+            android:layout_marginBottom="53dp"
+            android:layout_gravity="bottom" />
+
+    </LinearLayout>
 
 
-</LinearLayout>
+    <Button
+            android:id="@+id/camera_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/camera_button"
+            android:background="@mipmap/camera_button"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            />
+    <Button
+        android:id="@+id/confirm_button"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:src="@mipmap/confirm_button"
+        android:background="@mipmap/confirm_button"
+        android:layout_gravity="bottom"
+        android:layout_weight="0.4"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="true"
+        android:visibility="gone"/>
+    <Button
+        android:id="@+id/cancel_button"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:src="@mipmap/cancel_button"
+        android:background="@mipmap/cancel_button"
+        android:layout_gravity="bottom"
+        android:layout_weight="0.4"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:visibility="gone"/>
+
+</RelativeLayout>

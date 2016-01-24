@@ -48,7 +48,7 @@ public class RecognitionActivity extends Activity {
   private static final int CODE_PICK = 1;
 
   private final ClarifaiClient client = new ClarifaiClient(APP_ID, APP_SECRET);
-  private Button selectButton;
+  private Button cameraButton;
   private ImageView imageView;
   private TextView textView;
   private static final int CAM_REQUEST = 1313;
@@ -58,8 +58,8 @@ public class RecognitionActivity extends Activity {
     setContentView(R.layout.activity_recognition);
     imageView = (ImageView) findViewById(R.id.image_view);
     textView = (TextView) findViewById(R.id.text_view);
-    selectButton = (Button) findViewById(R.id.select_button);
-    selectButton.setOnClickListener(new View.OnClickListener() {
+    cameraButton = (Button) findViewById(R.id.camera_button);
+    cameraButton.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v){
         Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -80,7 +80,7 @@ public class RecognitionActivity extends Activity {
       if (bitmap != null) {
         imageView.setImageBitmap(bitmap);
         textView.setText("Recognizing...");
-        selectButton.setEnabled(false);
+        cameraButton.setEnabled(false);
 
         // Run recognition on a background thread since it makes a network call.
         new AsyncTask<Bitmap, Void, RecognitionResult>() {
@@ -166,6 +166,9 @@ public class RecognitionActivity extends Activity {
     } else {
       textView.setText("Sorry, there was an error recognizing your image.");
     }
-    selectButton.setEnabled(true);
+    cameraButton.setVisibility(View.INVISIBLE);
+    findViewById(R.id.confirm_button).setVisibility(View.VISIBLE);
+    findViewById(R.id.cancel_button).setVisibility(View.VISIBLE);
+
   }
 }
