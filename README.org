@@ -1,0 +1,5 @@
+* CookBook
+Cook fast, break things
+
+An application to enable quickly finding recipes, based on the ingredients available.
+Simply take a picture of your ingredients, and then our program will find a matching recipe using those ingredients.
