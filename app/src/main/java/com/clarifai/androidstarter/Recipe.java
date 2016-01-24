@@ -2,10 +2,10 @@ package com.clarifai.androidstarter;
 import java.util.ArrayList;
 import java.net.URL;
 public class Recipe {
-    private String[] ingredients;
-    private String description = null;
-    private String name = null;
-    private URL url = null;
+    public String[] ingredients;
+    public String description = null;
+    public String name = null;
+    public URL url = null;
 
     public String getDecription() {
 	return description;

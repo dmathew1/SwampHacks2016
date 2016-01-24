@@ -253,6 +253,16 @@ public class RecognitionActivity extends Activity {
 
 		  }
 	  });
+    }
 
-      }
+    public ArrayList<String> getRecipList(){
+        Picker pkr = new Picker();
+        ArrayList<Recipe> entireRecipeList = pkr.getSomeSampleRecipes();
+        entireRecipeList = pkr.pickRecipes(foodResults, entireRecipeList);
+        ArrayList<String> recipeList = new ArrayList<String>();
+        for(int a = 0; a < entireRecipeList.size(); a++){
+            recipeList.add(a, entireRecipeList.get(a).name);
+        }
+        return recipeList;
+    }
   }
