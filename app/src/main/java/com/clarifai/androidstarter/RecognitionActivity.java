@@ -8,7 +8,6 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Handler;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
@@ -162,11 +161,12 @@ public class RecognitionActivity extends Activity {
           for(String food : foodBank){
             if(tag.getName().toString().equals(food)){
               foodResults.add(tag.getName());
-                textView.setText(food);
                 count++;
             }
           }
         }
+
+        textView.setText("Tags:\n" + foodResults);
       } else {
         Log.e(TAG, "Clarifai: " + result.getStatusMessage());
         textView.setText("Sorry, there was an error recognizing your image.");
@@ -174,48 +174,54 @@ public class RecognitionActivity extends Activity {
     } else {
       textView.setText("Sorry, there was an error recognizing your image.");
     }
-
-	//Makes the camera button invisible on the results
-    cameraButton.setVisibility(View.INVISIBLE);
-      if(count != 0){
+      if(count == 0){
+          Toast.makeText(this, "Could not identify the image", Toast.LENGTH_LONG).show();
+          goToStartScreen();
+      }
+      else{
+          //Makes the camera button invisible on the results
+          cameraButton.setVisibility(View.INVISIBLE);
           //Creates the Button view items and sets them as visible
           findViewById(R.id.confirm_button).setVisibility(View.VISIBLE);
           findViewById(R.id.cancel_button).setVisibility(View.VISIBLE);
-      }
-      else{
-          Toast.makeText(getApplicationContext(), "Could not identify the image", Toast.LENGTH_LONG).show();
-          // Execute some code after 2 seconds have passed
-          Handler handler = new Handler();
-          handler.postDelayed(new Runnable() {
-              public void run() {
+
+          //Creates the functionality of the button
+          Button confirmButton = (Button)findViewById(R.id.confirm_button);
+          confirmButton.setOnClickListener(new View.OnClickListener() {
+              @Override
+              public void onClick(View v) {
                   goToStartScreen();
               }
-          }, 1300);
-      }
+          });
 
-	  //Creates the functionality of the button
-      Button confirmButton = (Button)findViewById(R.id.confirm_button);
-      confirmButton.setOnClickListener(new View.OnClickListener() {
-          @Override
-          public void onClick(View v) {
-              goToStartScreen();
-          }
-      });
+          //Creates the functionality of the button
+          Button cancelButton = (Button)findViewById(R.id.cancel_button);
+          cancelButton.setOnClickListener(new View.OnClickListener() {
+              @Override
+              public void onClick(View v) {
+                  //remove the enqueued item
+                  if (foodResults.size() == 0) {
+                      goToStartScreen();
+                  }
 
-	  //Creates the functionality of the button
-      Button cancelButton = (Button)findViewById(R.id.cancel_button);
-      cancelButton.setOnClickListener(new View.OnClickListener() {
-          @Override
-          public void onClick(View v) {
-              //remove the enqueued item
-              if (foodResults.size() == 0) {
+                  foodResults.remove(foodResults.size() - 1);
+                  cameraButton.setEnabled(true);
                   goToStartScreen();
               }
+          });
 
-              foodResults.remove(foodResults.size() - 1);
-              cameraButton.setEnabled(true);
-              goToStartScreen();
-          }
-      });
+		  //Creates the functionality of the button
+		  Button getRecipe = (Button)findViewById(R.id.get_recipe);
+		  cancelButton.setOnClickListener(new View.OnClickListener() {
+			  @Override
+			  public void onClick(View v) {
+
+
+				  foodResults.remove(foodResults.size() - 1);
+				  cameraButton.setEnabled(true);
+				  goToStartScreen();
+			  }
+		  });
+      }
   }
 }
