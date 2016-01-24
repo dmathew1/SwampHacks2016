@@ -99,15 +99,27 @@
         android:src="@mipmap/down"
         android:background="@mipmap/down"
         android:layout_below="@+id/text_view"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="51dp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Click me, to start and take pictures!"
+        android:text="\nClick me, to start and take pictures!"
         android:id="@+id/camera_text"
-        android:layout_alignBottom="@+id/text_view"
+        android:layout_below="@+id/text_view"
         android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="What recipes can you make from what you see? Take a picture of what you find and see out what our magical cookbook can do for you!"
+        android:id="@+id/app_description"
+        android:layout_gravity="center_vertical"
+        android:textSize="20sp"
+        android:layout_above="@+id/camera_down"
+        android:layout_toRightOf="@+id/linearLayout2"
+        android:layout_toEndOf="@+id/linearLayout2" />
 
 </RelativeLayout>

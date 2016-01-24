@@ -121,6 +121,15 @@ public class RecognitionActivity extends Activity {
 
 	public void goToStartScreen() {
 		setContentView(R.layout.activity_recognition);
+
+		ImageView myImage = (ImageView) findViewById(R.id.camera_down);
+		Animation anim = new AlphaAnimation(0.0f, 1.0f);
+		anim.setDuration(400);
+		anim.setStartOffset(20);
+		anim.setRepeatMode(Animation.REVERSE);
+		anim.setRepeatCount(Animation.INFINITE);
+		myImage.startAnimation(anim);
+
 		imageView = (ImageView) findViewById(R.id.image_view);
 		textView = (TextView) findViewById(R.id.text_view);
 		cameraButton = (Button) findViewById(R.id.camera_button);
@@ -130,6 +139,7 @@ public class RecognitionActivity extends Activity {
 				findViewById(R.id.camera_button).setVisibility(View.INVISIBLE);
 				findViewById(R.id.camera_text).setVisibility(View.INVISIBLE);
 				findViewById(R.id.camera_down).setVisibility(View.INVISIBLE);
+				findViewById(R.id.app_description).setVisibility(View.INVISIBLE);
 				Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 				startActivityForResult(cameraIntent, CAM_REQUEST);
 			}
