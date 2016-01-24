@@ -168,10 +168,14 @@ public class RecognitionActivity extends Activity {
     } else {
       textView.setText("Sorry, there was an error recognizing your image.");
     }
+
+	//Makes the camera button invisible on the results
     cameraButton.setVisibility(View.INVISIBLE);
+	//Creates the Button view items and sets them as visible
     findViewById(R.id.confirm_button).setVisibility(View.VISIBLE);
     findViewById(R.id.cancel_button).setVisibility(View.VISIBLE);
 
+	  //Creates the functionality of the button
       Button confirmButton = (Button)findViewById(R.id.confirm_button);
       confirmButton.setOnClickListener(new View.OnClickListener() {
           @Override
@@ -179,10 +183,17 @@ public class RecognitionActivity extends Activity {
               goToStartScreen();
           }
       });
+
+	  //Creates the functionality of the button
       Button cancelButton = (Button)findViewById(R.id.cancel_button);
       cancelButton.setOnClickListener(new View.OnClickListener() {
           @Override
           public void onClick(View v) {
+			  //remove the enqueued item
+			  if(foodResults.size() == 0){
+				  goToStartScreen();
+			  }
+			  foodResults.remove(foodResults.size()-1);
               cameraButton.setEnabled(true);
               goToStartScreen();
           }
