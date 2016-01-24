@@ -11,8 +11,10 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,6 +23,8 @@ import com.clarifai.api.RecognitionRequest;
 import com.clarifai.api.RecognitionResult;
 import com.clarifai.api.Tag;
 import com.clarifai.api.exception.ClarifaiException;
+
+import org.w3c.dom.Text;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -96,13 +100,20 @@ public class RecognitionActivity extends Activity {
         textView = (TextView) findViewById(R.id.text_view);
         cameraButton = (Button) findViewById(R.id.camera_button);
         cameraButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                startActivityForResult(cameraIntent, CAM_REQUEST);
-            }
-        });
+			@Override
+			public void onClick(View v) {
+				Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+				startActivityForResult(cameraIntent, CAM_REQUEST);
+			}
+		});
     }
+
+	public void goToListRecipe(){
+		setContentView(R.layout.list_recipe);
+		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,R.layout.list_recipe,foodResults);
+		ListView listView = (ListView) findViewById(R.id.listView);
+		listView.setAdapter(adapter);
+	}
 
   /** Loads a Bitmap from a content URI returned by the media picker. */
   private Bitmap loadBitmapFromUri(Uri uri) {
@@ -212,14 +223,10 @@ public class RecognitionActivity extends Activity {
 
 		  //Creates the functionality of the button
 		  Button getRecipe = (Button)findViewById(R.id.get_recipe);
-		  cancelButton.setOnClickListener(new View.OnClickListener() {
+		  getRecipe.setOnClickListener(new View.OnClickListener() {
 			  @Override
 			  public void onClick(View v) {
-
-
-				  foodResults.remove(foodResults.size() - 1);
-				  cameraButton.setEnabled(true);
-				  goToStartScreen();
+				goToListRecipe();
 			  }
 		  });
       }
