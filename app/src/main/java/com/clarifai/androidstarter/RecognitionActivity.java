@@ -55,17 +55,7 @@ public class RecognitionActivity extends Activity {
 
   @Override protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_recognition);
-    imageView = (ImageView) findViewById(R.id.image_view);
-    textView = (TextView) findViewById(R.id.text_view);
-    cameraButton = (Button) findViewById(R.id.camera_button);
-    cameraButton.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View v){
-        Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        startActivityForResult(cameraIntent, CAM_REQUEST);
-      }
-    });
+    goToStartScreen();
   }
 
 
@@ -96,6 +86,20 @@ public class RecognitionActivity extends Activity {
       }
     }
   }
+
+    public void goToStartScreen() {
+        setContentView(R.layout.activity_recognition);
+        imageView = (ImageView) findViewById(R.id.image_view);
+        textView = (TextView) findViewById(R.id.text_view);
+        cameraButton = (Button) findViewById(R.id.camera_button);
+        cameraButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                startActivityForResult(cameraIntent, CAM_REQUEST);
+            }
+        });
+    }
 
   /** Loads a Bitmap from a content URI returned by the media picker. */
   private Bitmap loadBitmapFromUri(Uri uri) {
@@ -168,5 +172,20 @@ public class RecognitionActivity extends Activity {
     findViewById(R.id.confirm_button).setVisibility(View.VISIBLE);
     findViewById(R.id.cancel_button).setVisibility(View.VISIBLE);
 
+      Button confirmButton = (Button)findViewById(R.id.confirm_button);
+      confirmButton.setOnClickListener(new View.OnClickListener() {
+          @Override
+          public void onClick(View v) {
+              goToStartScreen();
+          }
+      });
+      Button cancelButton = (Button)findViewById(R.id.cancel_button);
+      cancelButton.setOnClickListener(new View.OnClickListener() {
+          @Override
+          public void onClick(View v) {
+              cameraButton.setEnabled(true);
+              goToStartScreen();
+          }
+      });
   }
 }
