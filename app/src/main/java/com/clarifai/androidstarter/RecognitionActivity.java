@@ -22,6 +22,8 @@ import com.clarifai.api.exception.ClarifaiException;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 import static android.provider.MediaStore.Images.Media;
 
@@ -36,6 +38,12 @@ public class RecognitionActivity extends Activity {
   // These can be obtained at https://developer.clarifai.com/applications
   private static final String APP_ID = "ZPsnrk88k5PoOPh33vuo9MMhqlv7Xk2SUkJ5UZP4";
   private static final String APP_SECRET = "Y1EYgZh9gQe2WFZtzJJ8EJLgtKutg5jsBvEU5KLx";
+
+  private static final ArrayList<String> foodBank = new ArrayList<String>(
+          Arrays.asList("egg", "beef", "broccoli", "apple", "banana", "pear", "cheese"));
+
+  //Results
+  private ArrayList<String> foodResults = new ArrayList<String>();
 
   private static final int CODE_PICK = 1;
 
@@ -139,8 +147,16 @@ public class RecognitionActivity extends Activity {
       if (result.getStatusCode() == RecognitionResult.StatusCode.OK) {
         // Display the list of tags in the UI.
         StringBuilder b = new StringBuilder();
+        //for each tag in the Clarifai results, loop through the foodBank
+
         for (Tag tag : result.getTags()) {
-          b.append(b.length() > 0 ? ", " : "").append(tag.getName());
+          for(String food : foodBank){
+            if(tag.getName().toString().equals(food)){
+              System.out.println(tag.getName());
+              System.out.println(food);
+              b.append(b.length() > 0 ? ", " : "").append(tag.getName());
+            }
+          }
         }
         textView.setText("Tags:\n" + b);
       } else {
