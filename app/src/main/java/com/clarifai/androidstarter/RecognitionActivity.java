@@ -183,12 +183,7 @@ public class RecognitionActivity extends Activity {
           findViewById(R.id.cancel_button).setVisibility(View.VISIBLE);
       }
       else{
-          Context context = getApplicationContext();
-          CharSequence text = "Could not identify the image";
-          int duration = Toast.LENGTH_LONG;
-
-          Toast toast = Toast.makeText(context, text, duration);
-          toast.show();
+          Toast.makeText(getApplicationContext(), "Could not identify the image", Toast.LENGTH_LONG).show();
           // Execute some code after 2 seconds have passed
           Handler handler = new Handler();
           handler.postDelayed(new Runnable() {
