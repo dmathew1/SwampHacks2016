@@ -1,33 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:weightSum="1">
-
-    <TextView
-        android:layout_width="352dp"
-        android:layout_height="62dp"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Medium Text"
-        android:id="@+id/textView"
-        android:layout_gravity="center_horizontal"
-        android:layout_weight="0.17" />
-
-    <Button
-        android:layout_width="186dp"
-        android:layout_height="wrap_content"
-        android:text="New Button"
-        android:id="@+id/button"
-        android:layout_gravity="center_horizontal"
-        android:layout_weight="0.09" />
-
-    <Button
-        android:layout_width="186dp"
-        android:layout_height="wrap_content"
-        android:text="New Button"
-        android:id="@+id/button2"
-        android:layout_gravity="center_horizontal"
-        android:layout_weight="0.10" />
+    android:weightSum="1"
+    >
 
     <Button
         android:layout_width="186dp"
@@ -35,6 +11,32 @@
         android:text="New Button"
         android:id="@+id/button3"
         android:layout_gravity="center_horizontal"
-        android:layout_weight="0.10" />
+        android:layout_weight="0.10"
+        android:background="@android:color/transparent"
+        android:layout_marginBottom="116dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
 
-</LinearLayout>
+    <ImageView
+        android:layout_width="418dp"
+        android:layout_height="140dp"
+        android:id="@+id/imageView"
+        android:src="@mipmap/clarifai"
+        android:layout_below="@+id/textView"
+        android:layout_centerHorizontal="true"
+        android:layout_weight="0.27" />
+
+    <TextView
+        android:layout_width="320dp"
+        android:layout_height="60dp"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="CookBook\n Powered by:"
+        android:id="@+id/textView"
+        android:layout_marginTop="40dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:clickable="false"
+        android:textAlignment="center"
+        android:gravity="center"/>
+
+</RelativeLayout>
