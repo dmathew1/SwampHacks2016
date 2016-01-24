@@ -175,12 +175,7 @@ public class RecognitionActivity extends Activity {
       textView.setText("Sorry, there was an error recognizing your image.");
     }
       if(count == 0){
-          Context context = getApplicationContext();
-          CharSequence text = "Could not identify the image";
-          int duration = Toast.LENGTH_LONG;
-
-          Toast toast = Toast.makeText(context, text, duration);
-          toast.show();
+          Toast.makeText(this, "Could not identify the image", Toast.LENGTH_LONG).show();
           goToStartScreen();
       }
       else{
@@ -214,6 +209,19 @@ public class RecognitionActivity extends Activity {
                   goToStartScreen();
               }
           });
+
+		  //Creates the functionality of the button
+		  Button getRecipe = (Button)findViewById(R.id.get_recipe);
+		  cancelButton.setOnClickListener(new View.OnClickListener() {
+			  @Override
+			  public void onClick(View v) {
+
+
+				  foodResults.remove(foodResults.size() - 1);
+				  cameraButton.setEnabled(true);
+				  goToStartScreen();
+			  }
+		  });
       }
   }
 }
