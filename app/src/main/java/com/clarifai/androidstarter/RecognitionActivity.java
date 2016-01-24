@@ -317,7 +317,7 @@ public class RecognitionActivity extends Activity {
 	}
 
 	public boolean checkArray(String food){
-		boolean canWeAdd = false;
+		boolean canWeAdd = true;
 		for(int a = 0; a < foodResults.size(); a++){
 			if(foodResults.get(a).contains(food)){
 				canWeAdd = false;
