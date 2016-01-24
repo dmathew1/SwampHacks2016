@@ -7,6 +7,7 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -21,6 +22,8 @@ import com.clarifai.api.exception.ClarifaiException;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 import static android.provider.MediaStore.Images.Media;
 
@@ -36,12 +39,19 @@ public class RecognitionActivity extends Activity {
   private static final String APP_ID = "ZPsnrk88k5PoOPh33vuo9MMhqlv7Xk2SUkJ5UZP4";
   private static final String APP_SECRET = "Y1EYgZh9gQe2WFZtzJJ8EJLgtKutg5jsBvEU5KLx";
 
+  private static final ArrayList<String> foodBank = new ArrayList<String>(
+          Arrays.asList("egg", "beef", "broccoli", "apple", "banana", "pear", "cheese"));
+
+  //Results
+  private ArrayList<String> foodResults = new ArrayList<String>();
+
   private static final int CODE_PICK = 1;
 
   private final ClarifaiClient client = new ClarifaiClient(APP_ID, APP_SECRET);
   private Button selectButton;
   private ImageView imageView;
   private TextView textView;
+  private static final int CAM_REQUEST = 1313;
 
   @Override protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -50,18 +60,21 @@ public class RecognitionActivity extends Activity {
     textView = (TextView) findViewById(R.id.text_view);
     selectButton = (Button) findViewById(R.id.select_button);
     selectButton.setOnClickListener(new View.OnClickListener() {
-      @Override public void onClick(View v) {
-        // Send an intent to launch the media picker.
-        final Intent intent = new Intent(Intent.ACTION_PICK, Media.EXTERNAL_CONTENT_URI);
-        startActivityForResult(intent, CODE_PICK);
+      @Override
+      public void onClick(View v){
+        Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        startActivityForResult(cameraIntent, CAM_REQUEST);
       }
     });
   }
 
+
+
   @Override protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
     super.onActivityResult(requestCode, resultCode, intent);
-    if (requestCode == CODE_PICK && resultCode == RESULT_OK) {
-      // The user picked an image. Send it to Clarifai for recognition.
+    if(requestCode == CAM_REQUEST){
+
+     // The user has taken an image. Send it to Clarifai for recognition.
       Log.d(TAG, "User picked image: " + intent.getData());
       Bitmap bitmap = loadBitmapFromUri(intent.getData());
       if (bitmap != null) {
@@ -134,8 +147,16 @@ public class RecognitionActivity extends Activity {
       if (result.getStatusCode() == RecognitionResult.StatusCode.OK) {
         // Display the list of tags in the UI.
         StringBuilder b = new StringBuilder();
+        //for each tag in the Clarifai results, loop through the foodBank
+
         for (Tag tag : result.getTags()) {
-          b.append(b.length() > 0 ? ", " : "").append(tag.getName());
+          for(String food : foodBank){
+            if(tag.getName().toString().equals(food)){
+              System.out.println(tag.getName());
+              System.out.println(food);
+              b.append(b.length() > 0 ? ", " : "").append(tag.getName());
+            }
+          }
         }
         textView.setText("Tags:\n" + b);
       } else {

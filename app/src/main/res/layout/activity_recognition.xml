@@ -29,12 +29,11 @@
       android:id="@+id/select_button"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:background="#3d88ec"
-      android:text="@string/select_image"
-      android:layout_marginTop="8dp"
-      android:layout_marginBottom="16dp"
-      android:paddingLeft="24dp"
-      android:paddingRight="24dp"
+      android:src="@mipmap/camera_button"
+      android:background="@mipmap/camera_button"
+      android:layout_alignParentBottom="true"
+      android:layout_centerHorizontal="true"
       />
+
 
 </LinearLayout>
