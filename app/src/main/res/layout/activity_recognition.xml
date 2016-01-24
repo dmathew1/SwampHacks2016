@@ -49,7 +49,6 @@
         android:src="@mipmap/get_recipe"
         android:background="@mipmap/get_recipe"
         android:layout_gravity="bottom"
-        android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:clickable="true"
@@ -64,8 +63,7 @@
         android:background="@mipmap/confirm_button"
         android:layout_gravity="bottom"
         android:layout_alignParentBottom="true"
-        android:layout_toRightOf="@+id/camera_button"
-        android:layout_toEndOf="@+id/camera_button"
+        android:layout_alignParentRight="true"
         android:visibility="gone"/>
     <Button
         android:id="@+id/cancel_button"
@@ -75,8 +73,6 @@
         android:background="@mipmap/cancel_button"
         android:layout_gravity="bottom"
         android:layout_alignParentBottom="true"
-        android:layout_toLeftOf="@+id/camera_button"
-        android:layout_toStartOf="@+id/camera_button"
         android:visibility="gone"/>
 
     <TextView
@@ -120,6 +116,7 @@
         android:textSize="20sp"
         android:layout_above="@+id/camera_down"
         android:layout_toRightOf="@+id/linearLayout2"
-        android:layout_toEndOf="@+id/linearLayout2" />
+        android:layout_toEndOf="@+id/linearLayout2"
+        android:gravity="center"/>
 
 </RelativeLayout>

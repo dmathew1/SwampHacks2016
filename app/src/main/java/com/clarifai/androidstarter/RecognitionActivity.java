@@ -122,14 +122,6 @@ public class RecognitionActivity extends Activity {
 	public void goToStartScreen() {
 		setContentView(R.layout.activity_recognition);
 
-		ImageView myImage = (ImageView) findViewById(R.id.camera_down);
-		Animation anim = new AlphaAnimation(0.0f, 1.0f);
-		anim.setDuration(400);
-		anim.setStartOffset(20);
-		anim.setRepeatMode(Animation.REVERSE);
-		anim.setRepeatCount(Animation.INFINITE);
-		myImage.startAnimation(anim);
-
 		imageView = (ImageView) findViewById(R.id.image_view);
 		textView = (TextView) findViewById(R.id.text_view);
 		cameraButton = (Button) findViewById(R.id.camera_button);
