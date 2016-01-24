@@ -63,7 +63,7 @@ public class RecognitionActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		goToStartScreen();
+		goToHomeScreen();
 	}
 
 
@@ -94,6 +94,17 @@ public class RecognitionActivity extends Activity {
 				textView.setText("Unable to load selected image.");
 			}
 		}
+	}
+
+	public void goToHomeScreen(){
+		setContentView(R.layout.landng_menu);
+		Button startButton = (Button) findViewById(R.id.button3);
+		startButton.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				goToStartScreen();
+			}
+		});
 	}
 
 	public void goToStartScreen() {
