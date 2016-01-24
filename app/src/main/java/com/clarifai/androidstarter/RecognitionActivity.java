@@ -11,6 +11,7 @@ import android.os.Handler;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -26,6 +27,7 @@ import com.clarifai.api.exception.ClarifaiException;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -55,6 +57,8 @@ public class RecognitionActivity extends Activity {
 	private TextView textView;
 	private static final int CAM_REQUEST = 1313;
 	private int count;
+	private ArrayList<String> recipeList = new ArrayList<String>();
+	ArrayList<Recipe> entireRecipeList;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -271,9 +275,9 @@ public class RecognitionActivity extends Activity {
 
 	public void getRecipeList() {
 		Picker pkr = new Picker();
-		ArrayList<Recipe> entireRecipeList = pkr.getSomeSampleRecipes();
+		entireRecipeList = pkr.getSomeSampleRecipes();
 		entireRecipeList = pkr.pickRecipes(foodResults, entireRecipeList);
-		ArrayList<String> recipeList = new ArrayList<String>();
+		recipeList.clear();
 		for (int a = 0; a < entireRecipeList.size(); a++) {
 			recipeList.add(a, entireRecipeList.get(a).name);
 		}
@@ -296,6 +300,26 @@ public class RecognitionActivity extends Activity {
 		ArrayAdapter<TextView> itemsAdapter = new ArrayAdapter(this, R.layout.list_text_view, arr);
 		ListView listView = (ListView) findViewById(R.id.listView);
 		listView.setAdapter(itemsAdapter);
+
+		listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+				// When clicked, show a toast with the TextView text or do whatever you need.
+				String recipeName = ((TextView) view).getText().toString();
+				int tempIndex = -1;
+				for(int a = 0; a < entireRecipeList.size(); a++){
+					if(entireRecipeList.get(a).name ==recipeName){
+						tempIndex = a;
+					}
+				}
+				String recipeDesc = "Name: " + entireRecipeList.get(tempIndex).name + "\n";
+				recipeDesc = "Desc: " + entireRecipeList.get(tempIndex).description + "\n";
+				for(int a = 0; a < entireRecipeList.get(tempIndex).ingredients.length; a++){
+					recipeDesc += "Ingredients: " + entireRecipeList.get(tempIndex).ingredients[a];
+					recipeDesc += ", ";
+				}
+				Toast.makeText(getApplicationContext(), recipeDesc, Toast.LENGTH_LONG).show();
+			}
+		});
 
 	}
 }
