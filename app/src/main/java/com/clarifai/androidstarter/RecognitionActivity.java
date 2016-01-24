@@ -1,7 +1,6 @@
 package com.clarifai.androidstarter;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -25,14 +24,10 @@ import com.clarifai.api.RecognitionResult;
 import com.clarifai.api.Tag;
 import com.clarifai.api.exception.ClarifaiException;
 
-import org.w3c.dom.Text;
-
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
-
-import static android.provider.MediaStore.Images.Media;
 
 
 /**
@@ -71,7 +66,6 @@ public class RecognitionActivity extends Activity {
   @Override protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
     super.onActivityResult(requestCode, resultCode, intent);
     if(requestCode == CAM_REQUEST){
-
      // The user has taken an image. Send it to Clarifai for recognition.
       Log.d(TAG, "User picked image: " + intent.getData());
       Bitmap bitmap = loadBitmapFromUri(intent.getData());
@@ -100,6 +94,18 @@ public class RecognitionActivity extends Activity {
         imageView = (ImageView) findViewById(R.id.image_view);
         textView = (TextView) findViewById(R.id.text_view);
         cameraButton = (Button) findViewById(R.id.camera_button);
+
+		//Creates the functionality of the button
+//		Button getIngredients = (Button)findViewById(R.id.get_ingredients_list);
+//		getIngredients.setOnClickListener(new View.OnClickListener() {
+//			@Override
+//			public void onClick(View v) {
+//				System.out.println("Recipe button");
+//				goToListRecipe();
+//
+//			}
+//		});
+
         cameraButton.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -110,10 +116,12 @@ public class RecognitionActivity extends Activity {
     }
 
 	public void goToListRecipe(){
+		System.out.println("I am in the recipe function");
 		setContentView(R.layout.list_recipe);
-		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,R.layout.list_recipe,foodResults);
+		ArrayAdapter<TextView> itemsAdapter = new ArrayAdapter(this, R.layout.list_text_view, foodResults);
 		ListView listView = (ListView) findViewById(R.id.listView);
-		listView.setAdapter(adapter);
+		listView.setAdapter(itemsAdapter);
+
 	}
 
   /** Loads a Bitmap from a content URI returned by the media picker. */
@@ -235,13 +243,16 @@ public class RecognitionActivity extends Activity {
               }
           });
 
-		  //Creates the functionality of the button
-		  Button getRecipe = (Button)findViewById(R.id.get_recipe);
-		  getRecipe.setOnClickListener(new View.OnClickListener() {
-			  @Override
-			  public void onClick(View v) {
-				goToListRecipe();
-			  }
-		  });
+	  //Creates the functionality of the button
+	  Button getIngredients = (Button)findViewById(R.id.get_ingredients_list);
+	  getIngredients.setOnClickListener(new View.OnClickListener() {
+		  @Override
+		  public void onClick(View v) {
+			  System.out.println("Recipe button");
+			  goToListRecipe();
+
+		  }
+	  });
+
       }
   }
