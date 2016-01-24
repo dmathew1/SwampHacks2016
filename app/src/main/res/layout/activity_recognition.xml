@@ -33,8 +33,8 @@
 
     <Button
         android:id="@+id/camera_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/ourapp1"
+        android:layout_height="@dimen/ourapp1"
         android:src="@mipmap/camera_button"
         android:background="@mipmap/camera_button"
         android:layout_gravity="bottom"
@@ -43,8 +43,8 @@
 
     <Button
         android:id="@+id/get_ingredients_list"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/ourapp1"
+        android:layout_height="@dimen/ourapp1"
         android:src="@mipmap/get_recipe"
         android:background="@mipmap/get_recipe"
         android:layout_gravity="bottom"
@@ -56,8 +56,8 @@
 
     <Button
         android:id="@+id/confirm_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/ourapp1"
+        android:layout_height="@dimen/ourapp1"
         android:src="@mipmap/confirm_button"
         android:background="@mipmap/confirm_button"
         android:layout_gravity="bottom"
@@ -67,8 +67,8 @@
         android:visibility="gone"/>
     <Button
         android:id="@+id/cancel_button"
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
+        android:layout_height="@dimen/ourapp1"
+        android:layout_width="@dimen/ourapp1"
         android:src="@mipmap/cancel_button"
         android:background="@mipmap/cancel_button"
         android:layout_gravity="bottom"
