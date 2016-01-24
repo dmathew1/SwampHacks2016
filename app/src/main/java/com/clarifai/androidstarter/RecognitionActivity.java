@@ -7,6 +7,7 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -42,6 +43,7 @@ public class RecognitionActivity extends Activity {
   private Button selectButton;
   private ImageView imageView;
   private TextView textView;
+  private static final int CAM_REQUEST = 1313;
 
   @Override protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -50,18 +52,21 @@ public class RecognitionActivity extends Activity {
     textView = (TextView) findViewById(R.id.text_view);
     selectButton = (Button) findViewById(R.id.select_button);
     selectButton.setOnClickListener(new View.OnClickListener() {
-      @Override public void onClick(View v) {
-        // Send an intent to launch the media picker.
-        final Intent intent = new Intent(Intent.ACTION_PICK, Media.EXTERNAL_CONTENT_URI);
-        startActivityForResult(intent, CODE_PICK);
+      @Override
+      public void onClick(View v){
+        Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        startActivityForResult(cameraIntent, CAM_REQUEST);
       }
     });
   }
 
+
+
   @Override protected void onActivityResult(int requestCode, int resultCode, Intent intent) {
     super.onActivityResult(requestCode, resultCode, intent);
-    if (requestCode == CODE_PICK && resultCode == RESULT_OK) {
-      // The user picked an image. Send it to Clarifai for recognition.
+    if(requestCode == CAM_REQUEST){
+
+     // The user has taken an image. Send it to Clarifai for recognition.
       Log.d(TAG, "User picked image: " + intent.getData());
       Bitmap bitmap = loadBitmapFromUri(intent.getData());
       if (bitmap != null) {
