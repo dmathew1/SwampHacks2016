@@ -62,7 +62,7 @@ public class Picker {
 	recipes.add(new Recipe("Banana Apple Smoothie","Blend it all in a blender, and then drink and enjoy.",
 			       "http://www.instructables.com/id/How-do-you-make-a-Apple-Banana-Smoothie-2-3-peo/",new String[]{"apple","pear","banana"}));
 	recipes.add(new Recipe("Steak", "Smash the apples into apple sauce, and then let the steak soak in this for 24 hours, then cook the steak in the oven until it is very well done.",
-			       "http://www.foodnetwork.com/recipes/bistecca-fiorentina-recipe.html",new String[]{"beef"}));
+			       "http://www.foodnetwork.com/recipes/bistecca-fiorentina-recipe.html",new String[]{"beef", "apple"}));
 
 	recipes.add(new Recipe("Boiled Egg","It's a boiled egg","http://www.food.com/recipe/easy-peeling-boiled-eggs-185013",new String[]{"egg"}));
 
@@ -72,7 +72,7 @@ public class Picker {
 			       new String[]{"broccoli","cheese"})); //This also uses butter....
 	recipes.add(new Recipe("Omelet","A broccoli, cheese, and egg omelet","http://www.incredibleegg.org/recipe/broccoli-cheddar-omelet/",
 			       new String[]{"broccoli","egg","cheese"}));
-	recipes.add(new Recipe("broccoli","5 ways to cook broccoli","http://www.thekitchn.com/how-to-cook-broccoli-5-ways-167323",new String[]{"broccoli"}));
+	recipes.add(new Recipe("Broccoli","5 ways to cook broccoli","http://www.thekitchn.com/how-to-cook-broccoli-5-ways-167323",new String[]{"broccoli"}));
 	return recipes;
 
     }

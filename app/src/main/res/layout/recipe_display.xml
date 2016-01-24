@@ -4,6 +4,14 @@
     android:layout_height="fill_parent"
     android:orientation="vertical" >
 
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Recipe List"
+        android:textSize="35sp"
+        android:layout_gravity="center_horizontal" />
+
     <ListView
         android:id="@+id/listView"
         android:layout_width="fill_parent"
@@ -27,10 +35,8 @@
         <Button
             android:id="@+id/get_recipe_list"
             android:layout_width="0dp"
-            android:layout_height="fill_parent"
-            android:layout_gravity="center_vertical"
-            android:layout_weight="1"
-            android:text="Recipe List" />
+            android:layout_height="0dp"
+            android:layout_gravity="center_vertical"/>
     </LinearLayout>
 
 </LinearLayout>
