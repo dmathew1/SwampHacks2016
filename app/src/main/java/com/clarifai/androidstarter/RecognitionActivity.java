@@ -227,7 +227,7 @@ public class RecognitionActivity extends Activity {
 				//for each tag in the Clarifai results, loop through the foodBank
 				for (Tag tag : result.getTags()) {
 					for (String food : foodBank) {
-						if (tag.getName().equals(food)) {
+						if (tag.getName().equals(food) && checkArray(food)) {
 							foodResults.add(tag.getName());
 							textView.setText(food);
 							count++;
@@ -316,6 +316,15 @@ public class RecognitionActivity extends Activity {
 		displayRecipe(recipeList);
 	}
 
+	public boolean checkArray(String food){
+		boolean canWeAdd = false;
+		for(int a = 0; a < foodResults.size(); a++){
+			if(foodResults.get(a).contains(food)){
+				canWeAdd = false;
+			}
+		}
+		return canWeAdd;
+	}
 
 	public void displayRecipe(ArrayList<String> arr) {
 		setContentView(R.layout.recipe_display);
