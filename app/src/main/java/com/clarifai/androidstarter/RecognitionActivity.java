@@ -31,6 +31,9 @@ import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
+
 
 /**
  * A simple Activity that performs recognition using the Clarifai API.
@@ -98,6 +101,15 @@ public class RecognitionActivity extends Activity {
 
 	public void goToHomeScreen(){
 		setContentView(R.layout.landng_menu);
+		TextView myText = (TextView) findViewById(R.id.button3 );
+		Animation anim = new AlphaAnimation(0.0f, 1.0f);
+		anim.setDuration(400);
+		anim.setStartOffset(20);
+		anim.setRepeatMode(Animation.REVERSE);
+		anim.setRepeatCount(Animation.INFINITE);
+		myText.startAnimation(anim);
+
+
 		Button startButton = (Button) findViewById(R.id.button3);
 		startButton.setOnClickListener(new View.OnClickListener() {
 			@Override
